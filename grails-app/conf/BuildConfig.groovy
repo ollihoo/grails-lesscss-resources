@@ -26,7 +26,6 @@ grails.project.dependency.resolution = {
         //mavenRepo "http://repository.jboss.com/maven2/"
     }
     dependencies {
-        // specify dependencies here under either 'build', 'compile', 'runtime', 'test' or 'provided' scopes eg.
         runtime 'org.lesscss:lesscss:1.3.1'
 
         test ("org.codehaus.geb:geb-spock:0.7.0") {
@@ -35,9 +34,18 @@ grails.project.dependency.resolution = {
         test ('org.gmock:gmock:0.8.2') {
             export = false
         }
-        test("org.seleniumhq.selenium:selenium-firefox-driver:2.28.0") {
-            exclude 'selenium-server'
-            export = false
+        def seleniumVersion = '2.27.0'
+        test("org.seleniumhq.selenium:selenium-support:$seleniumVersion") {
+           export = false
+        }
+        test("org.seleniumhq.selenium:selenium-firefox-driver:$seleniumVersion") {
+           export = false
+        }
+        test("org.seleniumhq.selenium:selenium-chrome-driver:$seleniumVersion") {
+          export = false
+        }
+        test("org.seleniumhq.selenium:selenium-htmlunit-driver:$seleniumVersion") {
+          export = false
         }
     }
     plugins {
@@ -48,6 +56,7 @@ grails.project.dependency.resolution = {
             export = false
         }
         compile (":resources:1.1.6") {
+          exclude 'commons-io'
             export = false
         }
         compile (":hibernate:2.0.0") {
